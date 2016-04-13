@@ -7,8 +7,7 @@ var NavBarContainer = require('./components/NavBarContainer');
 var {
   StyleSheet,
   Navigator,
-  StatusBarIOS,
-  View,
+  View
 } = React;
 
 
@@ -25,7 +24,7 @@ var Router = React.createClass({
     }
   },
 
-  /* 
+  /*
    * This changes the title in the navigation bar
    * It should preferrably be called for "onWillFocus" instad >
    * > but a recent update to React Native seems to break the animation
@@ -71,8 +70,8 @@ var Router = React.createClass({
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
-        this.setState({ 
-          dragStartX: x, 
+        this.setState({
+          dragStartX: x,
           didSwitchView: false
         });
         return true;
@@ -100,7 +99,7 @@ var Router = React.createClass({
     if (this.props.hideNavigationBar) {
       extraStyling.marginTop = 0;
     }
-    
+
     return (
       <View
         style={[styles.container, this.props.bgStyle, extraStyling]}
@@ -118,25 +117,17 @@ var Router = React.createClass({
         />
       </View>
     )
-    
+
   },
 
   render: function() {
-
-    // Status bar color
-    if (this.props.statusBarColor === "black") {
-      StatusBarIOS.setStyle(0);
-    } else {
-      StatusBarIOS.setStyle(1);
-    }
-
     var navigationBar;
 
     if (!this.props.hideNavigationBar) {
-      navigationBar = 
+      navigationBar =
       <NavBarContainer
         style={this.props.headerStyle}
-        navigator={navigator} 
+        navigator={navigator}
         currentRoute={this.state.route}
         backButtonComponent={this.props.backButtonComponent}
         rightCorner={this.props.rightCorner}
